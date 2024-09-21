@@ -1,0 +1,35 @@
+.list {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 400px;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.icon {
+  margin: 0;
+  padding-right: 7px;
+}
+
+.number {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+}

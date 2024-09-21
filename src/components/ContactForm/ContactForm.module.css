@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 4px;
+  max-width: 396px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.field {
+  height: 30px;
+  margin-bottom: 15px;
+  padding-left: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.button {
+  border-radius: 8px;
+  border: 1px solid;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  align-self: center;
+}
