@@ -34,8 +34,9 @@
 // }
 
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-import { selectNameFilter } from "./filtersSlice";
+import { fetchContacts, addContact, deleteContact } from "./operations";
+import { selectNameFilter } from "../filters/slice";
+import { logout } from "../auth/operations";
 
 const slice = createSlice({
   name: "contacts",
@@ -46,39 +47,52 @@ const slice = createSlice({
         state.loading = true;
         state.error = false;
       })
+      // для того щоб видалити дані при логауті від інших користувачів
+      .addCase(logout.fulfilled, () => {
+        return {
+          items: [],
+          loading: false,
+          error: null,
+        };
+      })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
+        state.error = null;
       })
-      .addCase(fetchContacts.rejected, (state) => {
-        state.error = true;
+      .addCase(fetchContacts.rejected, (state, action) => {
+        state.error = action.payload;
         state.loading = false;
       })
       .addCase(addContact.pending, (state) => {
         state.loading = true;
-        state.error = false;
       })
       .addCase(addContact.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
         state.items.push(action.payload);
-        state.loading = false;
       })
-      .addCase(addContact.rejected, (state) => {
+      .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
-        state.error = true;
+        state.error = action.payload;
       })
       .addCase(deleteContact.pending, (state) => {
         state.loading = true;
-        state.error = false;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.items = state.items.filter(
-          (contact) => contact.id !== action.payload.id
+        // state.items = state.items.filter(
+        //   (contact) => contact.id !== action.payload.id
+        // );
+        state.loading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          (contact) => contact.id === action.payload.id
         );
-        state.loading = false;
+        state.items.splice(index, 1);
       })
-      .addCase(deleteContact.rejected, (state) => {
+      .addCase(deleteContact.rejected, (state, action) => {
         state.loading = false;
-        state.error = true;
+        state.error = action.payload;
       });
   },
 });

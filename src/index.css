@@ -15,7 +15,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  /* color: #646cff; */
   text-decoration: inherit;
 }
 a:hover {
@@ -23,8 +23,8 @@ a:hover {
 }
 
 body {
-  display: flex;
-  margin-left: 0;
+  /* display: flex; */
+  margin: 0;
 }
 
 h1 {
