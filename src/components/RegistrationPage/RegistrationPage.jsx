@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { useId } from "react";
-import css from "./RegistrationForm.module.css";
+import css from "./RegistrationPage.module.css";
 import * as Yup from "yup";
 import "yup-phone-lite";
 
@@ -24,7 +24,7 @@ const initialValues = {
   password: "",
 };
 
-export default function RegistrationForm() {
+export default function RegistrationPage() {
   const dispatch = useDispatch();
   const nameFieldId = useId();
   const emailFieldId = useId();
