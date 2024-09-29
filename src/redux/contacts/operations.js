@@ -55,20 +55,20 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const editContact = createAsyncThunk(
-  "contacts/editContact",
-  async ({ newContact, contactId }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
+// export const editContact = createAsyncThunk(
+//   "contacts/editContact",
+//   async ({ newContact, contactId }, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const token = state.auth.token;
 
-    if (!token) {
-      return thunkAPI.rejectWithValue();
-    }
-    try {
-      const { data } = await axios.patch(`/contacts/${contactId}`, newContact);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//     if (!token) {
+//       return thunkAPI.rejectWithValue();
+//     }
+//     try {
+//       const { data } = await axios.patch(`/contacts/${contactId}`, newContact);
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

@@ -38,7 +38,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-  editContact,
+  // editContact,
 } from "./operations";
 import { selectNameFilter } from "../filters/selectors";
 import { logout } from "../auth/operations";
@@ -99,25 +99,25 @@ const slice = createSlice({
       .addCase(deleteContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      })
-      .addCase(editContact.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(editContact.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        const index = state.contacts.findIndex(
-          (contact) => contact.id === action.payload.id
-        );
-        if (index !== -1) {
-          state.contacts[index] = action.payload;
-        }
-      })
-      .addCase(editContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
       });
+    // .addCase(editContact.pending, (state) => {
+    //   state.loading = true;
+    //   state.error = null;
+    // })
+    // .addCase(editContact.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.error = null;
+    //   const index = state.contacts.findIndex(
+    //     (contact) => contact.id === action.payload.id
+    //   );
+    //   if (index !== -1) {
+    //     state.contacts[index] = action.payload;
+    //   }
+    // })
+    // .addCase(editContact.rejected, (state, action) => {
+    //   state.loading = false;
+    //   state.error = action.payload;
+    // });
   },
 });
 
