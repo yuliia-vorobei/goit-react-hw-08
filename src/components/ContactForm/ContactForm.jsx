@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import SearchBox from "../SearchBox/SearchBox";
 import toast, { Toaster } from "react-hot-toast";
+import { Button } from "@mui/material";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -69,9 +70,9 @@ export default function ContactForm() {
               component="span"
             />
           </div>
-          <button className={css.button} type="submit">
+          <Button variant="contained" className={css.button} type="submit">
             Add contact
-          </button>
+          </Button>
         </Form>
       </Formik>
       <SearchBox />
