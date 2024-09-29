@@ -6,6 +6,7 @@ import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import SearchBox from "../SearchBox/SearchBox";
+import toast, { Toaster } from "react-hot-toast";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -30,6 +31,7 @@ export default function ContactForm() {
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
     actions.resetForm();
+    toast.success("New contact added");
   };
 
   return (
@@ -41,6 +43,7 @@ export default function ContactForm() {
       >
         <Form className={css.form}>
           <div className={css.container}>
+            <Toaster />
             <label className={css.label} htmlFor={nameFieldId}>
               Name
             </label>

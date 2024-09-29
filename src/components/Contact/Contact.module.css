@@ -3,7 +3,6 @@
   border-radius: 4px;
   padding: 6px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -32,10 +31,4 @@
   font-weight: 600;
   font-size: 18px;
   margin: 0;
-}
-
-.collection {
-  display: flex;
-  /* justify-content: space-evenly; */
-  gap: 5px;
 }
