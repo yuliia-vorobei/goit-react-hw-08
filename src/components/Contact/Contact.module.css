@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-width: 400px;
+  min-width: 413px;
   align-items: center;
 }
 
@@ -32,4 +32,10 @@
   font-weight: 600;
   font-size: 18px;
   margin: 0;
+}
+
+.collection {
+  display: flex;
+  /* justify-content: space-evenly; */
+  gap: 5px;
 }

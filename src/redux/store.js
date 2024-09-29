@@ -16,17 +16,25 @@ import storage from "redux-persist/lib/storage";
 
 const persistedAuthReducer = persistReducer(
   {
-    key: "jws-token",
+    key: "auth",
     storage,
     whitelist: ["token"],
   },
   authReducer
 );
 
+const persistedContactsReducer = persistReducer(
+  {
+    key: "contacts",
+    storage,
+  },
+  contactsReducer
+);
+
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    contacts: contactsReducer,
+    contacts: persistedContactsReducer,
     filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>

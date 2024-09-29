@@ -60,7 +60,9 @@ export default function LoginForm() {
           <ErrorMessage className={css.error} name="name" component="span" />
         </div>
 
-        <button type="submit">Log In</button>
+        <button type="submit" className={css.button}>
+          Log In
+        </button>
       </Form>
     </Formik>
   );

@@ -2,20 +2,18 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://connections-api.goit.global/";
-const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
-};
 
 export const fetchContacts = createAsyncThunk(
   "contacts/getAll",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue();
+    }
     try {
       const { data } = await axios.get("/contacts");
-      // setAuthHeader(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -25,9 +23,14 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   "contacts/addContacts",
   async (newContact, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue();
+    }
     try {
       const { data } = await axios.post("/contacts", { ...newContact }); //, newContact
-      // setAuthHeader(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -37,9 +40,32 @@ export const addContact = createAsyncThunk(
 export const deleteContact = createAsyncThunk(
   "contacts/deleteContacts",
   async (contactId, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue();
+    }
     try {
       const { data } = await axios.delete(`/contacts/${contactId}`);
-      // clearAuthHeader();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async ({ newContact, contactId }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue();
+    }
+    try {
+      const { data } = await axios.patch(`/contacts/${contactId}`, newContact);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
